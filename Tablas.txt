@@ -1,0 +1,24 @@
+PRODUCTO (Diego)
+PERSONAL (Diego)
+ESTADO (Diego)
+CAJA (Diego)
+
+VENTA (Luis)
+CLIENTE (Luis)
+
+CATEGORÍA (Christian)
+TIPO DE MOVIMIENTO (Christian)
+MOVIMIENTO (Christian)
+USUARIO EXTERNO (Christian)
+
+PROVEEDOR (Alexander)
+PEDIDOS (Alexander)
+VENTA_DETALLE (Alexander)
+TIPO_PERSONAL (Alexander)
+
+
+
+TEMAS:
+
+INNER JOING
+LIKE
