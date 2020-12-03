@@ -2,166 +2,199 @@
 
 CREATE TABLE producto
 (
-    CodProducto NUMERIC primary key,
-    NomProducto VARCHAR(100) NOT NULL,
-    PrecioCompraUni NUMERIC(7,2) NOT NULL,
-    PrecioVentaUni NUMERIC(7,2) NOT NULL,
-    Stock NUMERIC
+    codProducto NUMERIC primary key,
+    nomProducto VARCHAR(100),
+    precioCompraUni NUMERIC(7,2),
+    precioVentaUni NUMERIC(7,2),
+    stock NUMERIC
 );
 CREATE TABLE personal
 (
-    CodPer NUMERIC PRIMARY KEY,
-    NomPer VARCHAR(50),
-    ApePer VARCHAR(100),
+    codPer NUMERIC PRIMARY KEY,
+    nomPer VARCHAR(50),
+    apePer VARCHAR(100),
     fecha_nacimiento date,
     edad NUMERIC,
-    dni NUMERIC NOT NULL,
-    UsuPer VARCHAR(50),
-    ConPer VARCHAR(50)
+    dni NUMERIC,
+    usuPer VARCHAR(50),
+    conPer VARCHAR(50)
 );
 CREATE TABLE estado
 (
-    Id_estado NUMERIC PRIMARY KEY,
-    Nombre_estado VARCHAR(20)
+    idEstado NUMERIC PRIMARY KEY,
+    nombreEstado VARCHAR(20)
 );
 
 CREATE TABLE caja
 (
-    CodCaja NUMERIC PRIMARY KEY,
-    MontoCaja NUMERIC(7,2) NOT NULL
+    codCaja NUMERIC PRIMARY KEY,
+    montoCaja NUMERIC(7,2)
 );
 
-CREATE TABLE Venta
+CREATE TABLE venta
 (
-    CodVenta NUMERIC PRIMARY KEY,
-    subtotal NUMERIC(7,2) NOT NULL,
-    descuentototal NUMERIC(7,2) NOT NULL,
-    importetotal NUMERIC(7,2) NOT NULL,
-    Fecha_Registro DATE
+    codVenta NUMERIC PRIMARY KEY,
+    subtotal NUMERIC(7,2),
+    descuentoTotal NUMERIC(7,2),
+    importeTotal NUMERIC(7,2),
+    fechaRegistro DATE
 );
 
 CREATE TABLE cliente
 (
-    Id_cliente NUMERIC PRIMARY KEY
+    idCliente NUMERIC PRIMARY KEY
 );
 
 CREATE TABLE categoria
 (
-    Id_categoria NUMERIC primary key,
-    nombre_categoria varchar(20) not null
+    idCategoria NUMERIC primary key,
+    nombreCategoria varchar(20)
 );
 
-CREATE TABLE TipoMovimiento
+CREATE TABLE tipo_movimiento
 (
-    CodTipMov NUMERIC primary key NOT NULL,
-    NomTipo varchar(20)
+    codTipMov NUMERIC primary key,
+    nomTipo varchar(20)
 );
 
 CREATE TABLE movimiento
 (
-    CodMovimiento NUMERIC primary key,
-    Fecha_Movimiento DATE NOT NULL,
-    Descripcion varchar(50) NOT NULL,
-    Monto NUMERIC(7,2) NOT NULL,
-    Caja NUMERIC(7,2) NOT NULL
+    codMovimiento NUMERIC primary key,
+    fechaMovimiento DATE,
+    descripcion varchar(50),
+    monto NUMERIC(7,2),
+    caja NUMERIC(7,2)
 );
 
-CREATE TABLE UsuarioExterno
+CREATE TABLE usuario_externo
 (
-    id_usuario_externo NUMERIC PRIMARY KEY,
-    Nombre_compañia varchar(100),
-    nombre_contacto varchar(100) not null,
-    Direccion_proveedor varchar(200) not null,
-    Telefono NUMERIC
+    idUsuarioExterno NUMERIC PRIMARY KEY,
+    nombreCompania varchar(100),
+    nombreContacto varchar(100),
+    direccionProveedor varchar(200),
+    telefono NUMERIC
 );
 
 CREATE TABLE proveedor
 (
-    Id_proveedor NUMERIC PRIMARY KEY
+    idProveedor NUMERIC PRIMARY KEY
 );
 
 CREATE TABLE pedidos
 (
-    CodPedido NUMERIC PRIMARY KEY,
-    Cantidad NUMERIC NOT NULL,
-    PrecioCompra NUMERIC(7,2) NOT NULL,
-    PrecioCompraUnidad NUMERIC(7,2) NOT NULL,
-    Fecha_RegistroP DATE
+    codPedido NUMERIC PRIMARY KEY,
+    cantidad NUMERIC,
+    precioCompra NUMERIC(7,2),
+    precioCompraUnidad NUMERIC(7,2),
+    fechaRegistroP DATE
 );
 
 CREATE TABLE venta_detalle
 (
-    Cantidad NUMERIC NOT NULL,
-    Importe NUMERIC(7,2) NOT NULL,
-    Total_cobrado NUMERIC(7,2) NOT NULL,
-    DescuentoVD NUMERIC(7,2) NOT NULL
+    cantidad NUMERIC,
+    importe NUMERIC(7,2),
+    totalCobrado NUMERIC(7,2),
+    descuentoVD NUMERIC(7,2)
 );
 
 CREATE TABLE tipo_personal
 (
-    Id_tipo NUMERIC PRIMARY KEY,
-    Nombre_tipo VARCHAR(20)
+    idTipo NUMERIC PRIMARY KEY,
+    nombreTipo VARCHAR(20)
 );
 
 /* CREACIÓN DE TABLAS */
 
+
+
+
 /* CREACIÓN DE COLUMNAS FORANEAS */
-alter table producto add Id_categoria numeric not null;
-alter table producto add estado_producto numeric;
+alter table producto add idCategoria numeric;
+alter table producto add estadoProducto numeric;
 
-alter table personal add tipo_personal numeric;
-alter table personal add estado_personal numeric;
+alter table personal add tipoPersonal numeric;
+alter table personal add estadoPersonal numeric;
 
-alter table caja add CodPer numeric;
+alter table caja add codPer numeric;
 
-alter table venta add Id_cliente numeric;
-alter table venta add CodPer numeric;
+alter table venta add idCliente numeric;
+alter table venta add codPer numeric;
 
-alter table cliente add id_usuario_externo numeric;
+alter table cliente add idUsuarioExterno numeric;
 
-alter table movimiento add CodPer numeric;
-alter table movimiento add CodTipMov numeric;
+alter table movimiento add codPer numeric;
+alter table movimiento add codTipMov numeric;
 
-alter table proveedor add id_usuario_externo numeric;
+alter table proveedor add idUsuarioExterno numeric;
 
 alter table pedidos add CodProducto numeric;
-alter table pedidos add Id_proveedor numeric;
-alter table pedidos add CodPer numeric;
+alter table pedidos add idProveedor numeric;
+alter table pedidos add codPer numeric;
 
-alter table venta_detalle add CodVenta numeric;
-alter table venta_detalle add CodProducto numeric;
+alter table venta_detalle add codVenta numeric;
+alter table venta_detalle add codProducto numeric;
 /* CREACIÓN DE COLUMNAS FORANEAS */
 
-/* CREACIÓN DE RESTRICCIONES */
+
 
 /* CREACIÓN DE RESTRICCIONES */
+alter table producto modify nomProducto not null;
+alter table producto modify precioCompraUni not null;
+alter table producto modify precioVentaUni not null;
+
+alter table personal modify dni not null;
+
+alter table caja modify montoCaja not null;
+
+alter table venta modify subTotal not null;
+alter table venta modify descuentoTotal not null;
+alter table venta modify importeTotal not null;
+
+alter table movimiento modify fechaMovimiento not null;
+alter table movimiento modify descripcion not null;
+alter table movimiento modify monto not null;
+alter table movimiento modify caja not null;
+
+alter table usuario_externo modify nombreContacto not null;
+alter table usuario_externo modify direccionProveedor not null;
+
+alter table pedidos modify cantidad not null;
+alter table pedidos modify precioCompra not null;
+alter table pedidos modify precioCompraUnidad not null;
+
+alter table venta_detalle modify cantidad not null;
+alter table venta_detalle modify importe not null;
+alter table venta_detalle modify totalCobrado not null;
+alter table venta_detalle modify descuentoVD not null;
+/* CREACIÓN DE RESTRICCIONES */
+
 
 
 /* CREACIÓN DE LLAVES FORANEAS */
-alter table producto add constraint fk_Id_categoria foreign key(Id_categoria) references categoria(Id_categoria);
-alter table producto add constraint fk_estado_producto foreign key(estado_producto) references estado(Id_estado);
+alter table producto add constraint fk_Id_categoria foreign key(idCategoria) references categoria(idCategoria);
+alter table producto add constraint fk_estado_producto foreign key(estadoProducto) references estado(idEstado);
 
-alter table personal add constraint fk_tipo_personal foreign key(tipo_personal) references tipo_personal(Id_tipo);
-alter table personal add constraint fk_estado_personal foreign key(estado_personal) references estado(Id_estado);
+alter table personal add constraint fk_tipo_personal foreign key(tipoPersonal) references tipo_personal(idTipo);
+alter table personal add constraint fk_estado_personal foreign key(estadoPersonal) references estado(idEstado);
 
-alter table caja add constraint fk_codperc foreign key(CodPer) references personal(CodPer);
+alter table caja add constraint fk_codperc foreign key(codPer) references personal(codPer);
 
-alter table venta add constraint fk_Id_cliente foreign key(Id_cliente) references cliente(Id_cliente);
-alter table venta add constraint fk_CodPerv foreign key(CodPer) references personal(CodPer);
+alter table venta add constraint fk_Id_cliente foreign key(idCliente) references cliente(idCliente);
+alter table venta add constraint fk_CodPerv foreign key(codPer) references personal(codPer);
 
-alter table cliente add constraint fk_id_usuario_externo foreign key(id_usuario_externo) references UsuarioExterno(id_usuario_externo);
+alter table cliente add constraint fk_id_usuario_externo foreign key(idUsuarioExterno) references usuario_externo(idUsuarioExterno);
 
-alter table movimiento add constraint fk_CodPer foreign key(CodPer) references personal(CodPer);
-alter table movimiento add constraint fk_CodTipMov foreign key(CodTipMov) references TipoMovimiento(CodTipMov);
+alter table movimiento add constraint fk_CodPer foreign key(codPer) references personal(codPer);
+alter table movimiento add constraint fk_CodTipMov foreign key(codTipMov) references tipo_movimiento(codTipMov);
 
-alter table proveedor add constraint fk_id_usuario_externop foreign key(id_usuario_externo) references UsuarioExterno(id_usuario_externo);
+alter table proveedor add constraint fk_id_usuario_externop foreign key(idUsuarioExterno) references usuario_externo(idUsuarioExterno);
 
-alter table pedidos add constraint fk_CodProducto foreign key(CodProducto) references producto(CodProducto);
-alter table pedidos add constraint fk_Id_proveedor foreign key(Id_proveedor) references proveedor(Id_proveedor);
-alter table pedidos add constraint fk_CodPerpedidos foreign key(CodPer) references personal(CodPer);
+alter table pedidos add constraint fk_CodProducto foreign key(codProducto) references producto(codProducto);
+alter table pedidos add constraint fk_Id_proveedor foreign key(idProveedor) references proveedor(idProveedor);
+alter table pedidos add constraint fk_CodPerpedidos foreign key(codPer) references personal(codPer);
 
-alter table venta_detalle add constraint fk_CodVenta foreign key(CodVenta) references Venta(CodVenta);
-alter table venta_detalle add constraint fk_CodProductovd foreign key(CodProducto) references producto(CodProducto);   
+alter table venta_detalle add constraint fk_CodVenta foreign key(codVenta) references Venta(codVenta);
+alter table venta_detalle add constraint fk_CodProductovd foreign key(codProducto) references producto(codProducto);   
 /* CREACIÓN DE LLAVES FORANEAS */    
 
 
